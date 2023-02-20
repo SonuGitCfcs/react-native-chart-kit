@@ -183,13 +183,18 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
     data: number[];
   }) => {
     const baseHeight = this.calcBaseHeight(data, height);
-
+    const convertNumber =  (value: number)=> {
+      let res = Number(value)
+      .toFixed(0)
+      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+      return res;
+  };
     const renderLabel = (value: number) => {
       if(this.props.chartConfig.formatTopBarValue) {
         return this.props.chartConfig.formatTopBarValue(value)
       }
       else {
-        return value
+        return `₹ ${convertNumber(value)}`;
       }
     }
     return data.map((x, i) => {
@@ -204,9 +209,10 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
             barWidth / 1
             
           }
-          y={((baseHeight - barHeight) / 4) * 3 + paddingTop - 1}
+          y={((baseHeight - barHeight) / 4) * 3 + paddingTop - 8}
           fill={this.props.chartConfig.color(0.6)}
-          fontSize="12"
+          fontSize="8"
+          fontweight="500"
           textAnchor="middle"
         >
           {renderLabel(data[i])}
