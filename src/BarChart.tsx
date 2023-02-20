@@ -212,7 +212,7 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
           y={((baseHeight - barHeight) / 4) * 3 + paddingTop - 8}
           fill={this.props.chartConfig.color(0.6)}
           fontSize="8"
-          fontweight="500"
+          fontWeight="500"
           textAnchor="middle"
         >
           {renderLabel(data[i])}
